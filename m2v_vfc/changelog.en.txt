@@ -1,0 +1,186 @@
+History
+
+2009, 4/22 version 0.6.57
+
+  fixed bug:
+  - ".m2ts" extension probrem (version 0.6.56 work imperfect)
+
+2009, 4/21 version 0.6.56 (mme.exe: 0.1.21)
+
+  new:
+  - add ".m2ts" extension to plugin's file type option.
+  - add "m2v.aui" to mme.exe library option.
+
+2009, 3/28 version 0.6.55
+
+  fixed bug:
+  - AP-922 IDCT SSE/SSE2 implementation is not correct
+    (the 5th coefficient for row 1/7 has invalid value)
+  - chroma upsampling SIMD/non-SIMD missmatch
+
+2008, 3/24 version 0.6.54a (mme.exe: 0.1.20)
+
+  new:
+  - add '-g', '-q' options to mme.exe. 
+    -g force create GOP list.
+    -q quit when command line files are processed.
+
+2006, 5/25 version 0.6.54
+
+  fixed bug:
+  - thread safety is insufficient.
+
+2005, 6/13 version 0.6.53
+
+  new:
+  - more strong error tolerance for broken bitstream.
+
+2005, 6/8 version 0.6.52
+
+  fixed bug:
+  - threw "Access Violation" by a broken PES packet.
+
+2005, 1/3 version 0.6.51
+
+  fixed bug:
+  - audio error on random access (0.6.50 enbug)
+
+2004, 12/29 version 0.6.50
+
+  new:
+  - 1ch monaural audio output (the old version outputs 2ch with silent right channel)
+
+2004, 12/23 version 0.6.49
+
+  fixed bug:
+  - Didn't recognise a monaural audio stream.
+
+2004, 6/30 version 0.6.48
+
+  fixed bug:
+  - shorter audio duration when reading split files.
+
+2003, 12/10 version 0.6.47
+
+  fixed bug:
+  - Fell in infinite loop when audio seeking.
+    (0.6.45 enbug, 0.6.46 fix imperfect)
+
+  new:
+  - Compiler version up (Intel C/C++ Compiler Ver. 8.0)
+
+2003, 12/9 version 0.6.46
+
+  fixed bug:
+  - Fell in infinite loop when audio seeking.
+
+2003, 11/28 version 0.6.45
+
+  fixed bug:
+  - Audio sample drop when step back.
+
+2003, 11/19 version 0.6.44
+
+  fixed bug:
+  - In the rare case, the head of audio data after seeking was silent.
+
+2003, 11/16 version 0.6.43 (mme.exe: 0.1.19)
+
+  fixed bug:
+  - TS PID selection error.
+
+  new:
+  - add ".VRO" extension to plugin's file type option.
+  - add "File" -> "Create GOP List" menu to mme.exe.
+
+2003, 10/25 version 0.6.42
+
+  fixed bug:
+  - file resource management error. (0.6.41 enbug)
+
+2003, 10/23 version 0.6.41
+
+  fixed bug:
+  - audio length error when concatenate "Consecutive Numbered Files"
+
+2003, 10/14 version 0.6.40
+
+  new:
+  - GOP timecode check routine more strictly.
+
+2003, 10/12 version 0.6.39
+
+  fixed bug:
+  - memory leak when closing PS/SS file what has audio stream.
+  - memory leak when closing TS file.
+
+  new:
+  - optimise DCT coefficient VLC decode.
+  - add ".MP2" and ".VES" extensions to plugin's file type option.
+
+2003, 07/06 version 0.6.38
+
+  fixed bug:
+  - "YUY2 Matrix" option was not worked correctly.
+
+  new:
+  - add SIMD (MMX/SSE2) code that convert YUY2 matrix.
+
+
+2003, 07/03 version 0.6.37 (m2vconf.exe: 0.8.0)
+
+  new:
+  - add function that convert YUY2 matrix. (ex. BT.709 to BT.601)
+    this function is used in the aviutl input plugin.
+  - m2vconf.exe - add "YUY2 Matrix (for m2v.aui)" option box.
+
+
+2003, 05/25 version 0.6.36
+
+  fixed bug:
+  - 32kHz 32/48kbps audio decode error
+
+
+2003, 05/06 version 0.6.35
+
+  fixed bug:
+  - missed target frame when random access 
+    (0.6.30 enbug, 0.6.32 fix was imparfect)
+    
+
+2003, 05/03 version 0.6.34
+
+  fixed bug:
+  - some audio samples were droped at the time of MP2 Audio decoding.
+
+
+2003, 05/01 version 0.6.33
+
+  fixed bug:
+  - threw exception "0xC0000005 - Access Violation" at MPEG-1 last frame
+    when the option "Top Field First" (default) was selected.
+
+  new:
+  - field order correction is disabled when MPEG-1 or Progressive Sequence 
+    MPEG-2 File is opened
+  - add english changelog (this file)
+
+
+2003, 04/30 version 0.6.32
+
+  fixed bug:
+  - did needless Motion Compensation when Intra MB
+  - missed target frame when random access (0.6.30 enbug)
+
+
+2003, 04/29 version 0.6.31 (m2vconf.exe: 0.7.0, mme.exe: 0.1.18)
+
+  fixed bug:
+  - mme.exe - overwrited the last open folder information by the last 
+    save folder information.
+
+  new:
+  - automatic concatenate when consecutive numbered file is opened 
+    (default: off). (ex: work_0001.mpg + work_0002.mpg)
+  - m2vconf.exe - add "Consecutive Numbered File" option box.
+  - mme.exe - add default extension ".mpg" to the Save File Dialog.

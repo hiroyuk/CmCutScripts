@@ -1,0 +1,259 @@
+/////////////////////////////////////////////////////////////////////////////
+// MME MAIN RESOURCE FILE
+
+#include "winres.h"
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Language
+//
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+#ifndef _MAC
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,1,21,37
+ PRODUCTVERSION 0,1,21
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "CompanyName", "まるも製作所\0"
+            VALUE "FileDescription", "MARUMO MPEG-2 Editor\0"
+            VALUE "FileVersion", "0.1.21.37\0"
+            VALUE "InternalName", "Serial Mom\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2009 MOGI, Kazuhiro\0"
+            VALUE "OriginalFilename", "mme.exe\0"
+            VALUE "ProductVersion", "0.1.21\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+#endif    // !_MAC
+
+/////////////////////////////////////////////////////////////////////////////
+// 
+// Menu
+//
+MME_MAIN_MENU_JA MENU PRELOAD
+BEGIN 
+	POPUP "ファイル (&F)" 
+	BEGIN 
+		MENUITEM "開く (&O)", ID_FILE_OPEN
+		MENUITEM "閉じる (&C)", ID_FILE_CLOSE, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "出力 (&S)", ID_FILE_OUTPUT, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "ベンチマーク (&B)", ID_FILE_BENCHMARK, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "GOP List 作成 (&G)", ID_FILE_GOPLIST
+		MENUITEM SEPARATOR
+		MENUITEM "終了 (&X)", ID_FILE_END, 
+	END 
+	POPUP "編集 (&E)" 
+	BEGIN 
+		MENUITEM "IN 点の設定 (&I)", ID_EDIT_IN, GRAYED
+		MENUITEM "OUT 点の設定 (&O)", ID_EDIT_OUT, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "やりなおし (&U)" ID_EDIT_UNDO, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "画像のコピー (&C)", ID_EDIT_COPY, GRAYED
+	END
+	POPUP "移動 (&M)"
+	BEGIN
+		MENUITEM "フレーム指定 (&D)\tF", ID_MOVE_FRAME, GRAYED
+		MENUITEM "タイムコード指定 (&T)\tT", ID_MOVE_TIMECODE, GRAYED
+ 		MENUITEM SEPARATOR
+		MENUITEM "次のフレーム (&F)\t->", ID_MOVE_FORWARD, GRAYED
+		MENUITEM "前のフレーム (&B)\t<-", ID_MOVE_BACK, GRAYED
+ 		MENUITEM SEPARATOR
+		MENUITEM "次の I フレーム (&N)\tN", ID_MOVE_NEXT_I, GRAYED
+		MENUITEM "前の I フレーム (&P)\tP", ID_MOVE_PREVIOUS_I, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "IN 点 (&I)", ID_MOVE_IN, GRAYED
+		MENUITEM "OUT 点 (&O)", ID_MOVE_OUT, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "先頭フレーム (&S)\tHome", ID_MOVE_START, GRAYED
+		MENUITEM "最終フレーム (&E)\tEnd", ID_MOVE_END, GRAYED
+	END
+	POPUP "ヘルプ (&H)"
+	BEGIN
+		MENUITEM "MME について (&A)", ID_HELP_ABOUT, GRAYED
+	END
+END
+
+MME_MAIN_MENU_EN MENU PRELOAD
+BEGIN 
+	POPUP "&File" 
+	BEGIN 
+		MENUITEM "&Open", ID_FILE_OPEN
+		MENUITEM "&Close", ID_FILE_CLOSE, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "&Save", ID_FILE_OUTPUT, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "&Benchmark", ID_FILE_BENCHMARK, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "Create &GOP List", ID_FILE_GOPLIST,
+		MENUITEM SEPARATOR
+		MENUITEM "E&xit", ID_FILE_END, 
+	END 
+	POPUP "&Edit" 
+	BEGIN 
+		MENUITEM "Set Cut-&In", ID_EDIT_IN, GRAYED
+		MENUITEM "Set Cut-&Out", ID_EDIT_OUT, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "&Undo" ID_EDIT_UNDO, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "&Copy Frame", ID_EDIT_COPY, GRAYED
+	END
+	POPUP "&Move"
+	BEGIN
+		MENUITEM "with Frame In&dex\tF", ID_MOVE_FRAME, GRAYED
+		MENUITEM "with &Timecode\tT", ID_MOVE_TIMECODE, GRAYED
+ 		MENUITEM SEPARATOR
+		MENUITEM "&Forward Frame\t->", ID_MOVE_FORWARD, GRAYED
+		MENUITEM "&Backword Frame\t<-", ID_MOVE_BACK, GRAYED
+ 		MENUITEM SEPARATOR
+		MENUITEM "&Next I Frame\tN", ID_MOVE_NEXT_I, GRAYED
+		MENUITEM "&Previous I Frame\tP", ID_MOVE_PREVIOUS_I, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "&In Point", ID_MOVE_IN, GRAYED
+		MENUITEM "&Out Point", ID_MOVE_OUT, GRAYED
+		MENUITEM SEPARATOR
+		MENUITEM "&Start Frame\tHome", ID_MOVE_START, GRAYED
+		MENUITEM "&End Frame\tEnd", ID_MOVE_END, GRAYED
+	END
+	POPUP "&Help"
+	BEGIN
+		MENUITEM "&About MME", ID_HELP_ABOUT, GRAYED
+	END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+// 
+// ACCELERATOR
+//
+MME_MAIN_ACCELERATOR ACCELERATORS DISCARDABLE 
+BEGIN
+    VK_RIGHT, ID_MOVE_FORWARD,    VIRTKEY
+    VK_LEFT,  ID_MOVE_BACK,       VIRTKEY
+    0x46,     ID_MOVE_FRAME,      VIRTKEY
+    0x54,     ID_MOVE_TIMECODE,   VIRTKEY
+    0x4e,     ID_MOVE_NEXT_I,     VIRTKEY
+    0x50,     ID_MOVE_PREVIOUS_I, VIRTKEY
+    0x49,     ID_MOVE_IN,         VIRTKEY
+    0x51,     ID_MOVE_OUT,        VIRTKEY
+    VK_HOME,  ID_MOVE_START,      VIRTKEY
+    VK_END,   ID_MOVE_END,        VIRTKEY
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+IDD_CALLBACK_DIALOG_JA DIALOG DISCARDABLE  0, 0, 188, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "MME:処理状況"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    PUSHBUTTON      "中断",IDCANCEL,69,72,50,14
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",WS_BORDER,
+                    7,39,174,14
+    CTEXT           "処理中です",IDC_PERCENT_TEXT,7,15,174,8
+END
+
+IDD_CALLBACK_DIALOG_EN DIALOG DISCARDABLE  0, 0, 188, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "MME:Output Status"
+FONT 9, "Alial"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,69,72,50,14
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",WS_BORDER,
+                    7,39,174,14
+    CTEXT           "Now Working..",IDC_PERCENT_TEXT,7,15,174,8
+END
+
+IDD_FRAME_BY_NUMBER_DIALOG_JA DIALOG DISCARDABLE  0, 0, 134, 72
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "フレーム番号指定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "実行",IDOK,25,50,40,14
+    PUSHBUTTON      "取消",IDCANCEL,75,50,40,14
+    EDITTEXT        IDC_FRAME_INDEX,15,21,110,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "SPIN", IDC_FRAME_SPIN,"msctls_updown32", UDS_SETBUDDYINT | 
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,111,21,10,12 
+    LTEXT           "最大値まで", IDC_MAX_FRAME,16,7,90,8
+END
+
+IDD_FRAME_BY_NUMBER_DIALOG_EN DIALOG DISCARDABLE  0, 0, 134, 72
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Move to Frame Index"
+FONT 9, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,25,50,40,14
+    PUSHBUTTON      "Cancel",IDCANCEL,75,50,40,14
+    EDITTEXT        IDC_FRAME_INDEX,15,21,110,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "SPIN", IDC_FRAME_SPIN,"msctls_updown32", UDS_SETBUDDYINT | 
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,111,21,10,12 
+    LTEXT           "Max:", IDC_MAX_FRAME,16,7,90,8
+END
+
+IDD_FRAME_BY_TIMECODE_DIALOG_JA DIALOG DISCARDABLE  0, 0, 134, 72
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "タイムコード指定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "実行",IDOK,25,50,40,14
+    PUSHBUTTON      "取消",IDCANCEL,75,50,40,14
+    EDITTEXT        IDC_TIMECODE_VIEW,15,21,110,12,ES_AUTOHSCROLL
+    CONTROL         "SPIN", IDC_TIMECODE_SPIN,"msctls_updown32",UDS_ALIGNRIGHT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS,111,21,10,12 
+    LTEXT           "最大値まで", IDC_MAX_TIMECODE,16,7,90,8
+END
+
+IDD_FRAME_BY_TIMECODE_DIALOG_EN DIALOG DISCARDABLE  0, 0, 134, 72
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Move to Timecode "
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,25,50,40,14
+    PUSHBUTTON      "Cancel",IDCANCEL,75,50,40,14
+    EDITTEXT        IDC_TIMECODE_VIEW,15,21,110,12,ES_AUTOHSCROLL
+    CONTROL         "SPIN", IDC_TIMECODE_SPIN,"msctls_updown32",UDS_ALIGNRIGHT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS,111,21,10,12 
+    LTEXT           "Max:", IDC_MAX_TIMECODE,16,7,90,8
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP_ICON              ICON    DISCARDABLE     "marumo.ico"
+
+
