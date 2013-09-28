@@ -5,11 +5,12 @@ $TOOLS_PATH="C:\tools\DTV\CmCutScripts"
 
 $lgdPath = Join-Path $TOOLS_PATH "lgd"
 
-$LOGOG_PATH = Join-Path $TOOLS_PATH "logoGuillo_v207\logoGuillo.exe"
+$LOGOG_PATH = Join-Path $TOOLS_PATH "logoGuillo_v208beta_r4\logoGuillo.exe"
 $AVS2X_PATH = Join-Path $TOOLS_PATH "avs2pipemod.exe"
 $AVSPLG_PATH = Join-Path $TOOLS_PATH "m2v_vfc\m2v.vfp"
 $BONTSDEMUX_PATH = Join-Path $TOOLS_PATH "BonTsDemux\BonTsDemuxC.exe"
 $TSSPLITTER_PATH = Join-Path $TOOLS_PATH "tssplitter.exe"
+$MINMAXAUDIO_PATH = Join-Path $TOOLS_PATH "MinMaxAudio.jar"
 
 $FINISHED_PATH="D:\movie\処理済み"
 
@@ -65,7 +66,7 @@ function split($file, $ch, $sv) {
   $result = @()
   foreach ($f in $files) {
     if (demuxTS $f) {
-      write-host "`"$f`""
+      echo "`"$f`""
       $result += ($f -replace ".ts$", ".m2v")
     }
   }
@@ -138,9 +139,22 @@ function cmcut($files, $channelNo, $serviceNo) {
 
   if ($lgdFile -ne "") {
     foreach ($f in $files) {
-      write-host $f
-      if ($f -ne "" -and (Test-Path $f)) {
-        startProcess "$LOGOG_PATH" "-video `"$f`" -lgd `"$lgdFile`" -avs2x `"$AVS2X_PATH`" -avsPlg `"$AVSPLG_PATH`" -prm `"$autoTuneFile`" -out `"$f.txt`" -outFmt keyF"
+      if ($f -ne "") {
+        # 無音領域ファイル作成
+        $wavFileName = $f -replace ".m2v$", ".wav"
+        $silentFileName = $f -replace ".m2v$", ".silent"
+        startProcess "java" "-jar `"$MINMAXAUDIO_PATH`" `"$wavFileName`" `"$silentFileName`""
+
+        # logogillo起動
+        startProcess `
+            "$LOGOG_PATH" `
+            "-video `"$f`" `
+             -lgd `"$lgdFile`" `
+             -avs2x `"$AVS2X_PATH`" `
+             -avsPlg `"$AVSPLG_PATH`" `
+             -prm `"$autoTuneFile`" `
+             -useSil `"$silentFileName`" `
+             -out `"$f.txt`" -outFmt keyF"
       }
     }
   }
@@ -155,8 +169,13 @@ if ($filepath -ne "") {
   $fileName = Split-Path $filepath -Leaf
   $toFileName = Join-Path $tempPath $fileName
 
+  echo "InputFileName : ${fileName}"
+  echo "OutputFileName : ${toFileName}"
+
+  # ファイル分割
   $files = split $toFileName $channelNo $serviceNo
 
+  # CMカット
   cmcut $files $channelNo $serviceNo
 }
 
