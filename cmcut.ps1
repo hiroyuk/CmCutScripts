@@ -1,8 +1,9 @@
 param($filepath, $channelName, $channelNo, $serviceNo)
 $tempPath = "d:/movie/p"
-$lgdPath = "d:/movie/p/lgd"
 
 $TOOLS_PATH="C:\tools\DTV\CmCutScripts"
+
+$lgdPath = Join-Path $TOOLS_PATH "lgd"
 
 $LOGOG_PATH = Join-Path $TOOLS_PATH "logoGuillo_v207\logoGuillo.exe"
 $AVS2X_PATH = Join-Path $TOOLS_PATH "avs2pipemod.exe"
@@ -71,6 +72,7 @@ function split($file, $ch, $sv) {
 
   return $result
 }
+
 
 function cmcut($files, $channelNo, $serviceNo) {
   $lgdFile = ""
