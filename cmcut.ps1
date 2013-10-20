@@ -96,8 +96,8 @@ function cmcut($files, $channelNo, $serviceNo) {
       break
     }
     "23-.*" {
-      $lgdFile = Join-Path $lgdPath 'TvTokyo 1440x1080.lgd'
-      $autoTuneFile = Join-Path $lgdPath 'TvTokyo 1440x1080.lgd.autoTune.param'
+      $lgdFile = Join-Path $lgdPath 'TvTokyo50 1440x1080.lgd'
+      $autoTuneFile = Join-Path $lgdPath 'TvTokyo50 1440x1080.lgd.autoTune.param'
       break
     }
     "25-.*" {
